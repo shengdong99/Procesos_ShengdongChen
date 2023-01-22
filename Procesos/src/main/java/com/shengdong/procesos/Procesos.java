@@ -7,8 +7,6 @@ package com.shengdong.procesos;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,12 +16,16 @@ public class Procesos {
 
     public static void main(String[] args) throws IOException {
         ProcessBuilder pb = new ProcessBuilder("ping","www.google.com");
-        pb.inheritIO();       
+        pb.inheritIO();  
+        Process p = pb.start();
+
         try {
-            Process p = pb.start();
-            p.waitFor();
+            while(p.isAlive()){
+            p.waitFor(5, TimeUnit.SECONDS);
+            System.out.println("Esperando...");
+            }
         } catch (InterruptedException ex) {
-           System.out.println(ex);
+           System.out.println("fallo");
         }
  
     }
