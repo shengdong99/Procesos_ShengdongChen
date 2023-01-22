@@ -22,7 +22,7 @@ public class Procesos {
         try {
             while(p.isAlive()){
             p.waitFor(5, TimeUnit.SECONDS);
-            System.out.println("Esperando...");
+            System.out.println("Esperandos...");
             }
         } catch (InterruptedException ex) {
            System.out.println("fallo");
